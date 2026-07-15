@@ -1,0 +1,18 @@
+{
+  "name": "clinicconnect",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Portal de pre-registro de pacientes (proyecto de entrenamiento)",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "dev": "concurrently -n server,client -c blue,green \"npm --prefix server run dev\" \"npm --prefix client run dev\"",
+    "dev:server": "npm --prefix server run dev",
+    "dev:client": "npm --prefix client run dev",
+    "test": "npm --prefix server test",
+    "build": "npm --prefix client run build",
+    "seed": "npm --prefix server run seed"
+  },
+  "devDependencies": {
+    "concurrently": "^9.0.1"
+  }
+}

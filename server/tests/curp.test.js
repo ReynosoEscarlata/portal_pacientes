@@ -1,0 +1,46 @@
+import { test } from 'node:test';
+import assert from 'node:assert/strict';
+
+process.env.NODE_ENV = 'test';
+process.env.DATA_SOURCE = 'mock';
+
+const { esquemaDatosPersonales, CURP_REGEX } = await import('../src/validation/schemas.js');
+
+const base = {
+  nombre: 'María Guadalupe',
+  primerApellido: 'Pérez',
+  segundoApellido: 'García',
+  fechaNacimiento: '1985-03-12',
+  sexo: 'M',
+  curp: 'PEGG850312MDFRRR04',
+  telefono: '5512345678',
+  correo: 'maria@example.com'
+};
+
+test('acepta CURP válidas', () => {
+  assert.ok(CURP_REGEX.test('PEGG850312MDFRRR04'));
+  assert.ok(CURP_REGEX.test('HELJ781130HMCRPN05'));
+  assert.ok(CURP_REGEX.test('RACA920704MJCMRN01'));
+});
+
+test('acepta CURP en minúsculas (se normaliza a mayúsculas)', () => {
+  const r = esquemaDatosPersonales.safeParse({ ...base, curp: 'pegg850312mdfrrr04' });
+  assert.equal(r.success, true);
+  assert.equal(r.data.curp, 'PEGG850312MDFRRR04');
+});
+
+test('rechaza CURP con formato inválido', () => {
+  const invalidas = [
+    'PEGG850312MDFRRR0', // 17 caracteres
+    'PEGG850312MDFRRR045', // 19 caracteres
+    'PEGG851312MDFRRR04', // mes 13
+    'PEGG850332MDFRRR04', // día 32
+    'PEGG850312XDFRRR04', // sexo inválido en posición 11
+    'PEGG850312MXXRRR04', // entidad federativa inexistente
+    '1EGG850312MDFRRR04' // inicia con dígito
+  ];
+  for (const curp of invalidas) {
+    const r = esquemaDatosPersonales.safeParse({ ...base, curp });
+    assert.equal(r.success, false, `debería rechazar: ${curp}`);
+  }
+});

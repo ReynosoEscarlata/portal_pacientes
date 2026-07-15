@@ -1,0 +1,69 @@
+{
+  "versionAviso": "1.0-2026-07",
+  "fases": [
+    {
+      "id": "datos_personales",
+      "titulo": "Datos personales",
+      "descripcion": "Información básica para identificarte al llegar a la clínica.",
+      "icono": "👤",
+      "tipo": "form",
+      "sensible": false,
+      "campos": [
+        { "nombre": "nombre", "etiqueta": "Nombre(s)", "tipo": "text", "requerido": true, "maxLength": 80 },
+        { "nombre": "primerApellido", "etiqueta": "Primer apellido", "tipo": "text", "requerido": true, "maxLength": 80 },
+        { "nombre": "segundoApellido", "etiqueta": "Segundo apellido", "tipo": "text", "requerido": false, "maxLength": 80 },
+        { "nombre": "fechaNacimiento", "etiqueta": "Fecha de nacimiento", "tipo": "date", "requerido": true },
+        { "nombre": "sexo", "etiqueta": "Sexo", "tipo": "select", "requerido": true, "catalogo": "sexo" },
+        { "nombre": "curp", "etiqueta": "CURP", "tipo": "text", "requerido": true, "maxLength": 18, "pattern": "^[A-Za-z0-9]{18}$", "ayuda": "18 caracteres, tal como aparece en tu identificación oficial." },
+        { "nombre": "telefono", "etiqueta": "Teléfono celular", "tipo": "tel", "requerido": true, "pattern": "^\\d{10}$", "maxLength": 10, "ayuda": "10 dígitos, sin espacios ni guiones." },
+        { "nombre": "correo", "etiqueta": "Correo electrónico", "tipo": "email", "requerido": true, "maxLength": 120 }
+      ]
+    },
+    {
+      "id": "domicilio",
+      "titulo": "Domicilio",
+      "descripcion": "Domicilio actual del paciente.",
+      "icono": "🏠",
+      "tipo": "form",
+      "sensible": false,
+      "campos": [
+        { "nombre": "calle", "etiqueta": "Calle", "tipo": "text", "requerido": true, "maxLength": 120 },
+        { "nombre": "numero", "etiqueta": "Número (ext. / int.)", "tipo": "text", "requerido": true, "maxLength": 20, "ayuda": "Escribe S/N si no tiene número." },
+        { "nombre": "colonia", "etiqueta": "Colonia", "tipo": "text", "requerido": true, "maxLength": 120 },
+        { "nombre": "cp", "etiqueta": "Código postal", "tipo": "text", "requerido": true, "pattern": "^\\d{5}$", "maxLength": 5, "ayuda": "5 dígitos." },
+        { "nombre": "municipio", "etiqueta": "Municipio / alcaldía", "tipo": "text", "requerido": true, "maxLength": 120 },
+        { "nombre": "estado", "etiqueta": "Entidad federativa", "tipo": "select", "requerido": true, "catalogo": "entidades" }
+      ]
+    },
+    {
+      "id": "datos_clinicos",
+      "titulo": "Datos clínicos",
+      "descripcion": "Esta información es sensible: se protege con cifrado y solo el personal de salud podrá consultarla.",
+      "icono": "🩺",
+      "tipo": "form",
+      "sensible": true,
+      "campos": [
+        { "nombre": "motivoConsulta", "etiqueta": "Motivo de consulta", "tipo": "textarea", "requerido": true, "maxLength": 600 },
+        { "nombre": "alergias", "etiqueta": "Alergias", "tipo": "textarea", "requerido": false, "maxLength": 600, "ayuda": "Medicamentos, alimentos u otras. Escribe \"Ninguna\" si no tienes." },
+        { "nombre": "medicamentosActuales", "etiqueta": "Medicamentos actuales", "tipo": "textarea", "requerido": false, "maxLength": 600 },
+        { "nombre": "antecedentes", "etiqueta": "Antecedentes relevantes", "tipo": "textarea", "requerido": false, "maxLength": 600, "ayuda": "Cirugías, enfermedades crónicas, antecedentes familiares." }
+      ]
+    },
+    {
+      "id": "consentimiento",
+      "titulo": "Aviso de privacidad",
+      "descripcion": "Lee el aviso de privacidad y otorga tu consentimiento expreso.",
+      "icono": "🔒",
+      "tipo": "aviso_privacidad",
+      "sensible": false
+    },
+    {
+      "id": "confirmacion",
+      "titulo": "Confirmación",
+      "descripcion": "Revisa tu información y genera tu folio de pre-registro.",
+      "icono": "✅",
+      "tipo": "confirmacion",
+      "sensible": false
+    }
+  ]
+}
