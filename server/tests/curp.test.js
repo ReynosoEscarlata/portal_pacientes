@@ -23,6 +23,12 @@ test('acepta CURP válidas', () => {
   assert.ok(CURP_REGEX.test('RACA920704MJCMRN01'));
 });
 
+test('acepta CURP post-2000 (letra en posición 17)', () => {
+  assert.ok(CURP_REGEX.test('MAPA000115HDFRRLA1'));
+  const r = esquemaDatosPersonales.safeParse({ ...base, curp: 'MAPA000115HDFRRLA1' });
+  assert.equal(r.success, true);
+});
+
 test('acepta CURP en minúsculas (se normaliza a mayúsculas)', () => {
   const r = esquemaDatosPersonales.safeParse({ ...base, curp: 'pegg850312mdfrrr04' });
   assert.equal(r.success, true);
