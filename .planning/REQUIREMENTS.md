@@ -16,7 +16,7 @@ Scope is fully specified by the existing audit in `ROADMAP_VALIDACION_CURP_RFC.m
 
 ### CURP Validation (consistency)
 
-- [ ] **CURP-05**: The `curp` field `pattern` in `server/src/config/phases.config.json` matches the corrected `CURP_REGEX` from CURP-01 (duplicated, not sourced from a shared API)
+- [x] **CURP-05**: The `curp` field `pattern` in `server/src/config/phases.config.json` matches the corrected `CURP_REGEX` from CURP-01 (duplicated, not sourced from a shared API)
 
 ### Test Infrastructure
 
@@ -50,7 +50,7 @@ Deferred to future release. Tracked but not in current roadmap.
 | CURP-02 | Phase 1 | Complete |
 | CURP-03 | Phase 2 | Complete |
 | CURP-04 | Phase 2 | Complete |
-| CURP-05 | Phase 2 | Pending |
+| CURP-05 | Phase 2 | Complete |
 | CURP-06 | Phase 2 | Complete |
 
 **Coverage:**

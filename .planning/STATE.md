@@ -4,16 +4,16 @@ milestone: v1.0
 milestone_name: milestone
 current_phase: 02
 current_phase_name: Frontend CURP Consistency & Test Infrastructure
-status: executing
-stopped_at: Completed 02-01-PLAN.md
-last_updated: "2026-07-16T19:46:58.093Z"
+status: verifying
+stopped_at: Completed 02-02-PLAN.md
+last_updated: "2026-07-16T19:53:13.103Z"
 last_activity: 2026-07-16
 last_activity_desc: Phase 02 execution started
 progress:
   total_phases: 2
-  completed_phases: 1
+  completed_phases: 2
   total_plans: 3
-  completed_plans: 2
+  completed_plans: 3
 ---
 
 # Project State
@@ -29,10 +29,10 @@ See: .planning/PROJECT.md (updated 2026-07-15)
 
 Phase: 02 (Frontend CURP Consistency & Test Infrastructure) — EXECUTING
 Plan: 2 of 2
-Status: Ready to execute
+Status: Phase complete — ready for verification
 Last activity: 2026-07-16 — Phase 02 execution started
 
-Progress: [███████░░░] 67%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -60,6 +60,7 @@ Progress: [███████░░░] 67%
 |------|----------|-------|-------|
 | Phase 01 P01 | 5min | 3 tasks | 2 files |
 | Phase 02 P01 | 12min | 2 tasks | 6 files |
+| Phase 02 P02 | 6min | 3 tasks | 5 files |
 
 ## Accumulated Context
 
@@ -74,6 +75,7 @@ Recent decisions affecting current work:
 - [Phase ?]: CURP_REGEX tail changed from [B-DF-HJ-NP-TV-Z]{3}\d{2}$ to [B-DF-HJ-NP-TV-Z]{3}[A-Z0-9]\d$ — position 17 unrestricted alnum, position 18 stays a permissive digit (no check-digit algorithm)
 - [Phase ?]: CURP-06: Client test infra pinned to vitest@^3.2.7 + happy-dom (D-02), per RESEARCH.md compatibility with Vite 5.4.8.
 - [Phase ?]: CURP-03: enmascararCurp fixed to expose 4 chars (was 5), mirroring server/src/utils/mask.js exactly.
+- [Phase ?]: Fixed the RTL cleanup gap centrally in client/src/test-utils/setup.ts (afterEach(cleanup)) rather than per-file, since globals:false disables @testing-library/react's automatic cleanup registration.
 
 ### Pending Todos
 
@@ -100,6 +102,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-16T19:46:58.081Z
-Stopped at: Completed 02-01-PLAN.md
+Last session: 2026-07-16T19:53:13.080Z
+Stopped at: Completed 02-02-PLAN.md
 Resume file: None
