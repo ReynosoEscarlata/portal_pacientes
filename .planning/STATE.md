@@ -2,18 +2,18 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 2
+current_phase: 02
 current_phase_name: Frontend CURP Consistency & Test Infrastructure
 status: executing
-stopped_at: Phase 2 UI-SPEC approved
-last_updated: "2026-07-16T05:38:33.152Z"
-last_activity: 2026-07-15
-last_activity_desc: Phase 01 complete, transitioned to Phase 2
+stopped_at: Completed 02-01-PLAN.md
+last_updated: "2026-07-16T19:46:58.093Z"
+last_activity: 2026-07-16
+last_activity_desc: Phase 02 execution started
 progress:
   total_phases: 2
   completed_phases: 1
-  total_plans: 1
-  completed_plans: 1
+  total_plans: 3
+  completed_plans: 2
 ---
 
 # Project State
@@ -23,16 +23,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-15)
 
 **Core value:** A patient can complete pre-registration and get a valid folio without the data being wrong, mismatched between what the form allowed and what the backend accepted, or leaked on screen.
-**Current focus:** Phase 01 — backend-curp-regex-fix
+**Current focus:** Phase 02 — Frontend CURP Consistency & Test Infrastructure
 
 ## Current Position
 
-Phase: 2 — Frontend CURP Consistency & Test Infrastructure
-Plan: Not started
+Phase: 02 (Frontend CURP Consistency & Test Infrastructure) — EXECUTING
+Plan: 2 of 2
 Status: Ready to execute
-Last activity: 2026-07-15 — Phase 01 complete, transitioned to Phase 2
+Last activity: 2026-07-16 — Phase 02 execution started
 
-Progress: [██████████] 100%
+Progress: [███████░░░] 67%
 
 ## Performance Metrics
 
@@ -59,6 +59,7 @@ Progress: [██████████] 100%
 | Plan | Duration | Tasks | Files |
 |------|----------|-------|-------|
 | Phase 01 P01 | 5min | 3 tasks | 2 files |
+| Phase 02 P01 | 12min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -71,6 +72,8 @@ Recent decisions affecting current work:
 - CURP-05 fix approach: duplicate the corrected regex into `phases.config.json` rather than expose it via a public config API — lower effort, acceptable drift risk.
 - RFC implementation excluded from this milestone pending a business/compliance decision.
 - [Phase ?]: CURP_REGEX tail changed from [B-DF-HJ-NP-TV-Z]{3}\d{2}$ to [B-DF-HJ-NP-TV-Z]{3}[A-Z0-9]\d$ — position 17 unrestricted alnum, position 18 stays a permissive digit (no check-digit algorithm)
+- [Phase ?]: CURP-06: Client test infra pinned to vitest@^3.2.7 + happy-dom (D-02), per RESEARCH.md compatibility with Vite 5.4.8.
+- [Phase ?]: CURP-03: enmascararCurp fixed to expose 4 chars (was 5), mirroring server/src/utils/mask.js exactly.
 
 ### Pending Todos
 
@@ -97,6 +100,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-16T05:05:06.658Z
-Stopped at: Phase 2 UI-SPEC approved
-Resume file: .planning/phases/02-frontend-curp-consistency-test-infrastructure/02-UI-SPEC.md
+Last session: 2026-07-16T19:46:58.081Z
+Stopped at: Completed 02-01-PLAN.md
+Resume file: None

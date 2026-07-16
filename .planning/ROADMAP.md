@@ -46,10 +46,10 @@ A scoped bug-fix milestone against an already-audited codebase (`ROADMAP_VALIDAC
   3. A passing regression test for `enmascararCurp` exists that would fail if masking reverted to exposing 5 characters.
   4. The `curp` field pattern in `phases.config.json` matches the corrected backend regex from Phase 1, verified by a passing test that accepts a valid post-2000 CURP and rejects a malformed one in the wizard form before it would reach the backend.
 
-**Plans**: 2 plans
+**Plans**: 1/2 plans executed
 **UI hint**: yes
 
-- [ ] 02-01-PLAN.md — Vitest + Testing Library setup and enmascararCurp masking fix with regression test (CURP-03, CURP-04, CURP-06)
+- [x] 02-01-PLAN.md — Vitest + Testing Library setup and enmascararCurp masking fix with regression test (CURP-03, CURP-04, CURP-06)
 - [ ] 02-02-PLAN.md — Sync phases.config.json curp.pattern to backend regex, reusable renderConWizard harness, and PhaseRenderer pattern-validation component test (CURP-05, CURP-06)
 
 ## Progress
@@ -60,4 +60,4 @@ Phases execute in numeric order: 1 → 2
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Backend CURP Regex Fix | 1/1 | Complete    | 2026-07-15 |
-| 2. Frontend CURP Consistency & Test Infrastructure | 0/2 | Not started | - |
+| 2. Frontend CURP Consistency & Test Infrastructure | 1/2 | In Progress|  |

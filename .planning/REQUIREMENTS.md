@@ -11,8 +11,8 @@ Scope is fully specified by the existing audit in `ROADMAP_VALIDACION_CURP_RFC.m
 
 - [x] **CURP-01**: `CURP_REGEX` in `server/src/validation/schemas.js` accepts CURPs for patients born in 2000+ (letter in position 17) as well as pre-2000 (digit in position 17); position 18 remains always a digit
 - [x] **CURP-02**: `server/tests/curp.test.js` covers valid CURPs with the alphabetic post-2000 differentiator and corresponding invalid cases (out-of-range letter, malformed check digit)
-- [ ] **CURP-03**: `enmascararCurp` in `client/src/utils/mask.ts` masks all but the first 4 characters (not 5), matching the already-correct `server/src/utils/mask.js` behavior
-- [ ] **CURP-04**: A regression test exists for `enmascararCurp` (requires CURP-06 test runner)
+- [x] **CURP-03**: `enmascararCurp` in `client/src/utils/mask.ts` masks all but the first 4 characters (not 5), matching the already-correct `server/src/utils/mask.js` behavior
+- [x] **CURP-04**: A regression test exists for `enmascararCurp` (requires CURP-06 test runner)
 
 ### CURP Validation (consistency)
 
@@ -20,7 +20,7 @@ Scope is fully specified by the existing audit in `ROADMAP_VALIDACION_CURP_RFC.m
 
 ### Test Infrastructure
 
-- [ ] **CURP-06**: `client/package.json` has a working Vitest + Testing Library setup, with initial tests covering `enmascararCurp` (CURP-04) and `PhaseRenderer` CURP pattern validation (CURP-05)
+- [x] **CURP-06**: `client/package.json` has a working Vitest + Testing Library setup, with initial tests covering `enmascararCurp` (CURP-04) and `PhaseRenderer` CURP pattern validation (CURP-05)
 
 ## v2 Requirements
 
@@ -48,10 +48,10 @@ Deferred to future release. Tracked but not in current roadmap.
 |-------------|-------|--------|
 | CURP-01 | Phase 1 | Complete |
 | CURP-02 | Phase 1 | Complete |
-| CURP-03 | Phase 2 | Pending |
-| CURP-04 | Phase 2 | Pending |
+| CURP-03 | Phase 2 | Complete |
+| CURP-04 | Phase 2 | Complete |
 | CURP-05 | Phase 2 | Pending |
-| CURP-06 | Phase 2 | Pending |
+| CURP-06 | Phase 2 | Complete |
 
 **Coverage:**
 
