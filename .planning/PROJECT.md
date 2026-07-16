@@ -17,15 +17,16 @@ A patient can complete pre-registration and get a valid folio without the data b
 - ✓ AES-256-GCM encryption of clinical data at rest — existing
 - ✓ ARCO rights (access + deletion by folio/birthdate, rate-limited, no folio enumeration) — existing
 - ✓ Repository pattern (mock in-memory / PostgreSQL, switchable via `DATA_SOURCE`) — existing
+- ✓ CURP regex accepts patients born in 2000+ (`CURP_REGEX` position 17 now accepts the post-2000 letter differentiator) — Validated in Phase 1: Backend CURP Regex Fix
+- ✓ Backend test coverage for CURP 2000+ cases (valid alphabetic-differentiator CURPs + corresponding invalid cases) in `server/tests/curp.test.js` — Validated in Phase 1: Backend CURP Regex Fix
+- ✓ CURP masking on confirmation screen exposes only the first 4 characters (`enmascararCurp` fixed from 5→4) — Validated in Phase 2: Frontend CURP Consistency & Test Infrastructure
+- ✓ Client-side test suite (Vitest + Testing Library) added to `client/package.json`, runnable via standard test command — Validated in Phase 2: Frontend CURP Consistency & Test Infrastructure
+- ✓ Regression test for `enmascararCurp` locks the 4-character masking behavior — Validated in Phase 2: Frontend CURP Consistency & Test Infrastructure
+- ✓ Frontend CURP pattern in `phases.config.json` matches the corrected backend regex, verified via rendered-form PhaseRenderer test — Validated in Phase 2: Frontend CURP Consistency & Test Infrastructure
 
 ### Active
 
-- [ ] Fix CURP regex to accept patients born in 2000+ (`server/src/validation/schemas.js` — `CURP_REGEX` position 17 currently requires a digit; must accept the post-2000 letter differentiator too)
-- [ ] Add backend test coverage for CURP 2000+ cases (valid alphabetic-differentiator CURPs + corresponding invalid cases) in `server/tests/curp.test.js`
-- [ ] Fix CURP masking bug in `client/src/utils/mask.ts` (`enmascararCurp` exposes 5 characters instead of 4 — leaks one digit of birth year)
-- [ ] Add regression test for `enmascararCurp` once a client test runner exists
-- [ ] Align frontend CURP pattern in `server/src/config/phases.config.json` with the corrected backend regex (duplicate the fixed pattern — not the API-based single-source-of-truth option)
-- [ ] Add a client-side test suite (Vitest + Testing Library) to `client/package.json`, starting with `enmascararCurp` and `PhaseRenderer` pattern validation
+None — all milestone requirements validated.
 
 ### Out of Scope
 
@@ -35,10 +36,11 @@ A patient can complete pre-registration and get a valid folio without the data b
 
 ## Context
 
-- Audit already completed and documented in `ROADMAP_VALIDACION_CURP_RFC.md` (2026-07-15), based on review of `server/src/validation/schemas.js`, `client/src/components/wizard/PhaseRenderer.tsx`, `server/src/config/phases.config.json`, `client/src/utils/mask.ts`, and `.planning/codebase/CONCERNS.md`.
-- The frontend/backend validation split is a known architectural pattern (schemas defined once in backend, frontend reads via `/api/phases` and replicates as HTML5 constraints) — see `ARCHITECTURE.md` "Anti-Patterns" and "Cross-Cutting Concerns" sections. This milestone works within that pattern rather than changing it.
-- `client/` currently has no test runner at all; adding Vitest is new infrastructure, not just new tests.
-- CURP validation bugs are user-facing and data-safety issues: the regex bug blocks registration entirely for patients born 2000+, and the masking bug leaks PII on the confirmation screen.
+- Milestone v1.0 shipped 2026-07-16: both backend CURP regex validation and frontend consistency/masking are fixed, backed by new test coverage on both sides.
+- `client/` now has a working Vitest + Testing Library setup (`client/vitest.config.ts`, `client/src/test-utils/setup.ts`, `client/src/test-utils/renderConWizard.tsx`) — this was greenfield infrastructure before this milestone, not just new tests.
+- The corrected CURP regex now exists as 3 independently-maintained copies (`server/src/validation/schemas.js`, `server/src/config/phases.config.json`, and a test fixture in `PhaseRenderer.test.tsx`) with no automated equality check between them — flagged in Phase 2 code review (WR-01) as the same drift pattern that caused this milestone's original bug. Worth a small regression test in a future pass.
+- The frontend/backend validation split remains a known architectural pattern (schemas defined once in backend, frontend reads via `/api/phases` and replicates as HTML5 constraints) — see `ARCHITECTURE.md` "Anti-Patterns" and "Cross-Cutting Concerns" sections. This milestone worked within that pattern rather than changing it.
+- Deferred to v2 backlog: RFC-01 (RFC field in wizard, pending business/compliance decision) and CURP-07 (semantic cross-validation of CURP vs. birthdate/sex, `BACKLOG.md` #5).
 
 ## Constraints
 
@@ -49,9 +51,9 @@ A patient can complete pre-registration and get a valid folio without the data b
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Bundle Fase 1 + Fase 2 from the existing roadmap into one milestone | Fase 2 items depend on the Fase 1 CURP regex fix and touch overlapping files; doing both avoids a second pass | — Pending |
-| Duplicate the corrected CURP regex into `phases.config.json` (roadmap option 2.1a) rather than exposing it via a public config API (2.1b) | Lower effort; drift risk is small and acceptable for now | — Pending |
-| RFC implementation excluded from this milestone | Requires a business/compliance decision not yet made; not a bug to fix | — Pending |
+| Bundle Fase 1 + Fase 2 from the existing roadmap into one milestone | Fase 2 items depend on the Fase 1 CURP regex fix and touch overlapping files; doing both avoids a second pass | ✓ Good — Phase 2 built cleanly on Phase 1's regex fix, no rework needed |
+| Duplicate the corrected CURP regex into `phases.config.json` (roadmap option 2.1a) rather than exposing it via a public config API (2.1b) | Lower effort; drift risk is small and acceptable for now | ⚠️ Revisit — works today, but code review (Phase 2) flagged 3 hand-maintained regex copies with no automated equality check as a recurring drift risk |
+| RFC implementation excluded from this milestone | Requires a business/compliance decision not yet made; not a bug to fix | ✓ Good — correctly scoped out, tracked as RFC-01 in v2 backlog |
 
 ## Evolution
 
@@ -71,4 +73,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-15 after initialization*
+*Last updated: 2026-07-16 after v1.0 milestone completion*

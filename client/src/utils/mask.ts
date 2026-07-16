@@ -2,7 +2,7 @@
 
 export function enmascararCurp(curp: string): string {
   if (!curp) return '';
-  return curp.slice(0, 5) + '*'.repeat(Math.max(0, curp.length - 5));
+  return curp.slice(0, 4) + '*'.repeat(Math.max(0, curp.length - 4));
 }
 
 export function enmascararTelefono(telefono: string): string {
