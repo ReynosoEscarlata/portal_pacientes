@@ -17,11 +17,11 @@ A patient can complete pre-registration and get a valid folio without the data b
 - ✓ AES-256-GCM encryption of clinical data at rest — existing
 - ✓ ARCO rights (access + deletion by folio/birthdate, rate-limited, no folio enumeration) — existing
 - ✓ Repository pattern (mock in-memory / PostgreSQL, switchable via `DATA_SOURCE`) — existing
+- ✓ CURP regex accepts patients born in 2000+ (`CURP_REGEX` position 17 now accepts the post-2000 letter differentiator) — Validated in Phase 1: Backend CURP Regex Fix
+- ✓ Backend test coverage for CURP 2000+ cases (valid alphabetic-differentiator CURPs + corresponding invalid cases) in `server/tests/curp.test.js` — Validated in Phase 1: Backend CURP Regex Fix
 
 ### Active
 
-- [ ] Fix CURP regex to accept patients born in 2000+ (`server/src/validation/schemas.js` — `CURP_REGEX` position 17 currently requires a digit; must accept the post-2000 letter differentiator too)
-- [ ] Add backend test coverage for CURP 2000+ cases (valid alphabetic-differentiator CURPs + corresponding invalid cases) in `server/tests/curp.test.js`
 - [ ] Fix CURP masking bug in `client/src/utils/mask.ts` (`enmascararCurp` exposes 5 characters instead of 4 — leaks one digit of birth year)
 - [ ] Add regression test for `enmascararCurp` once a client test runner exists
 - [ ] Align frontend CURP pattern in `server/src/config/phases.config.json` with the corrected backend regex (duplicate the fixed pattern — not the API-based single-source-of-truth option)
@@ -71,4 +71,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-15 after initialization*
+*Last updated: 2026-07-15 after Phase 1 (Backend CURP Regex Fix) completion*
