@@ -30,7 +30,7 @@ See: .planning/PROJECT.md (updated 2026-07-15)
 Phase: 1 of 2 (Backend CURP Regex Fix)
 Plan: TBD (not yet planned)
 Status: Ready to plan
-Last activity: 2026-07-15 — ROADMAP.md created from CURP audit + requirements
+Last activity: 2026-07-15 - Completed quick task 260715-thz: Añadir sección Reglas de Desarrollo a .claude/CLAUDE.md
 
 Progress: [░░░░░░░░░░] 0%
 
@@ -73,6 +73,12 @@ None yet.
 ### Blockers/Concerns
 
 None yet.
+
+### Quick Tasks Completed
+
+| # | Description | Date | Commit | Directory |
+|---|-------------|------|--------|-----------|
+| 260715-thz | Añadir sección Reglas de Desarrollo a .claude/CLAUDE.md: rama independiente, alcance estricto, verificación final | 2026-07-15 | 9e97d1b | [260715-thz-anadir-seccion-reglas-de-desarrollo-a-cl](./quick/260715-thz-anadir-seccion-reglas-de-desarrollo-a-cl/) |
 
 ## Deferred Items
 
