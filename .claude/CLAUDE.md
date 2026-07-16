@@ -421,3 +421,9 @@ Use these entry points:
 
 Do not make direct repo edits outside a GSD workflow unless the user explicitly asks to bypass it.
 <!-- GSD:workflow-end -->
+
+## Reglas de Desarrollo
+
+1. **Rama git independiente:** siempre trabajar sobre una rama git separada de `master`; nunca commitear ni hacer push directo a `master`. Crear una rama descriptiva antes de empezar el trabajo.
+2. **Alcance estricto:** no modificar flujos ni código distintos a los solicitados explícitamente. Mantenerse dentro del alcance pedido; si algo fuera del alcance parece necesario, preguntar antes de expandirlo.
+3. **Verificación al final:** antes de dar por terminada cualquier tarea, correr las pruebas y la verificación. Referenciar los comandos concretos del repo: `npm test` (suite de backend con node:test) y `npm run build` (typecheck + build del cliente, que ejecuta `tsc --noEmit && vite build`). Ambos deben pasar antes de cerrar la tarea.
