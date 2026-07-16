@@ -20,10 +20,10 @@ current_phase_name: Frontend CURP Consistency & Test Infrastructure
 
 ## Project Reference
 
-See: .planning/PROJECT.md (updated 2026-07-15)
+See: .planning/PROJECT.md (updated 2026-07-16)
 
 **Core value:** A patient can complete pre-registration and get a valid folio without the data being wrong, mismatched between what the form allowed and what the backend accepted, or leaked on screen.
-**Current focus:** Phase 02 — Frontend CURP Consistency & Test Infrastructure
+**Current focus:** Planning next milestone
 
 ## Current Position
 
