@@ -44,22 +44,20 @@ Deferred to future release. Tracked but not in current roadmap.
 
 ## Traceability
 
-Populated during roadmap creation.
-
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CURP-01 | TBD | Pending |
-| CURP-02 | TBD | Pending |
-| CURP-03 | TBD | Pending |
-| CURP-04 | TBD | Pending |
-| CURP-05 | TBD | Pending |
-| CURP-06 | TBD | Pending |
+| CURP-01 | Phase 1 | Pending |
+| CURP-02 | Phase 1 | Pending |
+| CURP-03 | Phase 2 | Pending |
+| CURP-04 | Phase 2 | Pending |
+| CURP-05 | Phase 2 | Pending |
+| CURP-06 | Phase 2 | Pending |
 
 **Coverage:**
 - v1 requirements: 6 total
-- Mapped to phases: 0
-- Unmapped: 6 ⚠️ (pending roadmap creation)
+- Mapped to phases: 6
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-07-15*
-*Last updated: 2026-07-15 after initial definition*
+*Last updated: 2026-07-15 after roadmap creation (Phase 1: CURP-01, CURP-02 | Phase 2: CURP-03, CURP-04, CURP-05, CURP-06)*
