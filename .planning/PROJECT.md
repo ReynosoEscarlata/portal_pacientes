@@ -36,10 +36,11 @@ None — all milestone requirements validated.
 
 ## Context
 
-- Audit already completed and documented in `ROADMAP_VALIDACION_CURP_RFC.md` (2026-07-15), based on review of `server/src/validation/schemas.js`, `client/src/components/wizard/PhaseRenderer.tsx`, `server/src/config/phases.config.json`, `client/src/utils/mask.ts`, and `.planning/codebase/CONCERNS.md`.
-- The frontend/backend validation split is a known architectural pattern (schemas defined once in backend, frontend reads via `/api/phases` and replicates as HTML5 constraints) — see `ARCHITECTURE.md` "Anti-Patterns" and "Cross-Cutting Concerns" sections. This milestone works within that pattern rather than changing it.
-- `client/` currently has no test runner at all; adding Vitest is new infrastructure, not just new tests.
-- CURP validation bugs are user-facing and data-safety issues: the regex bug blocks registration entirely for patients born 2000+, and the masking bug leaks PII on the confirmation screen.
+- Milestone v1.0 shipped 2026-07-16: both backend CURP regex validation and frontend consistency/masking are fixed, backed by new test coverage on both sides.
+- `client/` now has a working Vitest + Testing Library setup (`client/vitest.config.ts`, `client/src/test-utils/setup.ts`, `client/src/test-utils/renderConWizard.tsx`) — this was greenfield infrastructure before this milestone, not just new tests.
+- The corrected CURP regex now exists as 3 independently-maintained copies (`server/src/validation/schemas.js`, `server/src/config/phases.config.json`, and a test fixture in `PhaseRenderer.test.tsx`) with no automated equality check between them — flagged in Phase 2 code review (WR-01) as the same drift pattern that caused this milestone's original bug. Worth a small regression test in a future pass.
+- The frontend/backend validation split remains a known architectural pattern (schemas defined once in backend, frontend reads via `/api/phases` and replicates as HTML5 constraints) — see `ARCHITECTURE.md` "Anti-Patterns" and "Cross-Cutting Concerns" sections. This milestone worked within that pattern rather than changing it.
+- Deferred to v2 backlog: RFC-01 (RFC field in wizard, pending business/compliance decision) and CURP-07 (semantic cross-validation of CURP vs. birthdate/sex, `BACKLOG.md` #5).
 
 ## Constraints
 
@@ -50,9 +51,9 @@ None — all milestone requirements validated.
 
 | Decision | Rationale | Outcome |
 |----------|-----------|---------|
-| Bundle Fase 1 + Fase 2 from the existing roadmap into one milestone | Fase 2 items depend on the Fase 1 CURP regex fix and touch overlapping files; doing both avoids a second pass | — Pending |
-| Duplicate the corrected CURP regex into `phases.config.json` (roadmap option 2.1a) rather than exposing it via a public config API (2.1b) | Lower effort; drift risk is small and acceptable for now | — Pending |
-| RFC implementation excluded from this milestone | Requires a business/compliance decision not yet made; not a bug to fix | — Pending |
+| Bundle Fase 1 + Fase 2 from the existing roadmap into one milestone | Fase 2 items depend on the Fase 1 CURP regex fix and touch overlapping files; doing both avoids a second pass | ✓ Good — Phase 2 built cleanly on Phase 1's regex fix, no rework needed |
+| Duplicate the corrected CURP regex into `phases.config.json` (roadmap option 2.1a) rather than exposing it via a public config API (2.1b) | Lower effort; drift risk is small and acceptable for now | ⚠️ Revisit — works today, but code review (Phase 2) flagged 3 hand-maintained regex copies with no automated equality check as a recurring drift risk |
+| RFC implementation excluded from this milestone | Requires a business/compliance decision not yet made; not a bug to fix | ✓ Good — correctly scoped out, tracked as RFC-01 in v2 backlog |
 
 ## Evolution
 
@@ -72,4 +73,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-16 after Phase 2 (Frontend CURP Consistency & Test Infrastructure) completion — final phase of milestone v1.0*
+*Last updated: 2026-07-16 after v1.0 milestone completion*
