@@ -9,8 +9,8 @@ Scope is fully specified by the existing audit in `ROADMAP_VALIDACION_CURP_RFC.m
 
 ### CURP Validation (bugs)
 
-- [ ] **CURP-01**: `CURP_REGEX` in `server/src/validation/schemas.js` accepts CURPs for patients born in 2000+ (letter in position 17) as well as pre-2000 (digit in position 17); position 18 remains always a digit
-- [ ] **CURP-02**: `server/tests/curp.test.js` covers valid CURPs with the alphabetic post-2000 differentiator and corresponding invalid cases (out-of-range letter, malformed check digit)
+- [x] **CURP-01**: `CURP_REGEX` in `server/src/validation/schemas.js` accepts CURPs for patients born in 2000+ (letter in position 17) as well as pre-2000 (digit in position 17); position 18 remains always a digit
+- [x] **CURP-02**: `server/tests/curp.test.js` covers valid CURPs with the alphabetic post-2000 differentiator and corresponding invalid cases (out-of-range letter, malformed check digit)
 - [ ] **CURP-03**: `enmascararCurp` in `client/src/utils/mask.ts` masks all but the first 4 characters (not 5), matching the already-correct `server/src/utils/mask.js` behavior
 - [ ] **CURP-04**: A regression test exists for `enmascararCurp` (requires CURP-06 test runner)
 
@@ -46,14 +46,15 @@ Deferred to future release. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CURP-01 | Phase 1 | Pending |
-| CURP-02 | Phase 1 | Pending |
+| CURP-01 | Phase 1 | Complete |
+| CURP-02 | Phase 1 | Complete |
 | CURP-03 | Phase 2 | Pending |
 | CURP-04 | Phase 2 | Pending |
 | CURP-05 | Phase 2 | Pending |
 | CURP-06 | Phase 2 | Pending |
 
 **Coverage:**
+
 - v1 requirements: 6 total
 - Mapped to phases: 6
 - Unmapped: 0 ✓

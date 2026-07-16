@@ -2,18 +2,18 @@
 gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
-current_phase: 1
-current_phase_name: Backend CURP Regex Fix
-status: executing
-stopped_at: Phase 1 context gathered
-last_updated: "2026-07-16T03:25:32.285Z"
+current_phase: 01
+current_phase_name: backend-curp-regex-fix
+status: verifying
+stopped_at: Completed 01-01-PLAN.md
+last_updated: "2026-07-16T03:34:48.226Z"
 last_activity: 2026-07-15
-last_activity_desc: "Completed quick task 260715-thz: Añadir sección Reglas de Desarrollo a .claude/CLAUDE.md"
+last_activity_desc: Phase 01 execution started
 progress:
   total_phases: 1
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
+  completed_phases: 1
+  total_plans: 1
+  completed_plans: 1
 ---
 
 # Project State
@@ -23,16 +23,16 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-15)
 
 **Core value:** A patient can complete pre-registration and get a valid folio without the data being wrong, mismatched between what the form allowed and what the backend accepted, or leaked on screen.
-**Current focus:** Phase 1 — Backend CURP Regex Fix
+**Current focus:** Phase 01 — backend-curp-regex-fix
 
 ## Current Position
 
-Phase: 1 of 2 (Backend CURP Regex Fix)
-Plan: TBD (not yet planned)
-Status: Ready to execute
-Last activity: 2026-07-15 - Completed quick task 260715-thz: Añadir sección Reglas de Desarrollo a .claude/CLAUDE.md
+Phase: 01 (backend-curp-regex-fix) — EXECUTING
+Plan: 1 of 1
+Status: Phase complete — ready for verification
+Last activity: 2026-07-15 — Phase 01 execution started
 
-Progress: [░░░░░░░░░░] 0%
+Progress: [██████████] 100%
 
 ## Performance Metrics
 
@@ -54,6 +54,11 @@ Progress: [░░░░░░░░░░] 0%
 - Trend: -
 
 *Updated after each plan completion*
+**Per-Plan Metrics:**
+
+| Plan | Duration | Tasks | Files |
+|------|----------|-------|-------|
+| Phase 01 P01 | 5min | 3 tasks | 2 files |
 
 ## Accumulated Context
 
@@ -65,6 +70,7 @@ Recent decisions affecting current work:
 - Milestone scope: Bundle Fase 1 (backend CURP bugs) + Fase 2 (frontend consistency/test infra) from `ROADMAP_VALIDACION_CURP_RFC.md` into one milestone, since Fase 2 depends on the Fase 1 regex fix and touches overlapping files.
 - CURP-05 fix approach: duplicate the corrected regex into `phases.config.json` rather than expose it via a public config API — lower effort, acceptable drift risk.
 - RFC implementation excluded from this milestone pending a business/compliance decision.
+- [Phase ?]: CURP_REGEX tail changed from [B-DF-HJ-NP-TV-Z]{3}\d{2}$ to [B-DF-HJ-NP-TV-Z]{3}[A-Z0-9]\d$ — position 17 unrestricted alnum, position 18 stays a permissive digit (no check-digit algorithm)
 
 ### Pending Todos
 
@@ -91,6 +97,6 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-16T03:04:14.038Z
-Stopped at: Phase 1 context gathered
-Resume file: .planning/phases/01-backend-curp-regex-fix/01-CONTEXT.md
+Last session: 2026-07-16T03:34:48.217Z
+Stopped at: Completed 01-01-PLAN.md
+Resume file: None
