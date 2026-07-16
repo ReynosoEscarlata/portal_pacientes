@@ -12,7 +12,7 @@ A scoped bug-fix milestone against an already-audited codebase (`ROADMAP_VALIDAC
 - Decimal phases (2.1, 2.2): Urgent insertions (marked with INSERTED)
 
 - [x] **Phase 1: Backend CURP Regex Fix** - Patients born in 2000+ can pass backend CURP validation, with regression test coverage (completed 2026-07-15)
-- [ ] **Phase 2: Frontend CURP Consistency & Test Infrastructure** - Frontend masking and pattern validation match the corrected backend behavior, backed by a new client test suite
+- [x] **Phase 2: Frontend CURP Consistency & Test Infrastructure** - Frontend masking and pattern validation match the corrected backend behavior, backed by a new client test suite (completed 2026-07-16)
 
 ## Phase Details
 
@@ -60,4 +60,4 @@ Phases execute in numeric order: 1 → 2
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Backend CURP Regex Fix | 1/1 | Complete    | 2026-07-15 |
-| 2. Frontend CURP Consistency & Test Infrastructure | 2/2 | In Progress|  |
+| 2. Frontend CURP Consistency & Test Infrastructure | 2/2 | Complete    | 2026-07-16 |
