@@ -25,7 +25,8 @@ A scoped bug-fix milestone against an already-audited codebase (`ROADMAP_VALIDAC
   2. A CURP for a patient born before 2000 with a digit in position 17 continues to be accepted (no regression).
   3. A CURP with an invalid position-17 character or a malformed check digit (position 18) is rejected by backend validation.
   4. `server/tests/curp.test.js` contains and passes test cases covering valid post-2000 CURPs and their corresponding invalid variants.
-**Plans**: TBD
+**Plans**: 1 plan
+- [ ] 01-01-PLAN.md — Fix CURP_REGEX position-17/18 tail and add post-2000 + invalid-variant regression tests (CURP-01, CURP-02)
 
 ### Phase 2: Frontend CURP Consistency & Test Infrastructure
 **Goal**: Frontend CURP masking and pattern validation match the corrected backend behavior, backed by a working client test suite, so PII isn't over-exposed on screen and format errors surface before submission instead of after.
@@ -47,5 +48,5 @@ Phases execute in numeric order: 1 → 2
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Backend CURP Regex Fix | 0/TBD | Not started | - |
+| 1. Backend CURP Regex Fix | 0/1 | Not started | - |
 | 2. Frontend CURP Consistency & Test Infrastructure | 0/TBD | Not started | - |
