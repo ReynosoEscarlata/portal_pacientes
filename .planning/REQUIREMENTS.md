@@ -38,15 +38,16 @@ Deferred beyond v2.0. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| RFC-01 | — | Pending roadmap |
-| RFC-02 | — | Pending roadmap |
-| CURP-07 | — | Pending roadmap |
+| CURP-07 | Phase 3 | Pending |
+| RFC-01 | Phase 4 | Pending |
+| RFC-02 | Phase 4 | Pending |
 
 **Coverage:**
 
 - v2.0 requirements: 3 total
-- Mapped to phases: pending roadmap
-- Unmapped: 3 (roadmap pending)
+- Mapped to phases: 3 (RFC-01 → Phase 4, RFC-02 → Phase 4, CURP-07 → Phase 3)
+- Unmapped: 0 ✓
 
 ---
 *Requirements defined: 2026-07-16 at v2.0 milestone start (RFC-02 germinated from SEED-001)*
+*Traceability mapped: 2026-07-16 at v2.0 roadmap creation*

@@ -3,10 +3,10 @@ gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Validación RFC y CURP semántica
 status: planning
-last_updated: "2026-07-17T05:14:05.571Z"
+last_updated: "2026-07-16T12:00:00.000Z"
 last_activity: 2026-07-16
 progress:
-  total_phases: 0
+  total_phases: 2
   completed_phases: 0
   total_plans: 0
   completed_plans: 0
@@ -20,14 +20,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-16)
 
 **Core value:** A patient can complete pre-registration and get a valid folio without the data being wrong, mismatched between what the form allowed and what the backend accepted, or leaked on screen.
-**Current focus:** Planning next milestone
+**Current focus:** v2.0 roadmap created (Phases 3-4) — ready to plan Phase 3
 
 ## Current Position
 
-Phase: Not started (defining requirements)
+Phase: 3 — CURP Semantic Cross-Validation (not started)
 Plan: —
-Status: Defining requirements
-Last activity: 2026-07-16 — Milestone v2.0 started
+Status: Roadmap complete, ready to plan Phase 3
+Last activity: 2026-07-16 — v2.0 roadmap created (Phases 3-4), all 3 requirements mapped
 
 ## Performance Metrics
 
@@ -65,13 +65,14 @@ Last activity: 2026-07-16 — Milestone v2.0 started
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
-- Milestone scope: Bundle Fase 1 (backend CURP bugs) + Fase 2 (frontend consistency/test infra) from `ROADMAP_VALIDACION_CURP_RFC.md` into one milestone, since Fase 2 depends on the Fase 1 regex fix and touches overlapping files.
-- CURP-05 fix approach: duplicate the corrected regex into `phases.config.json` rather than expose it via a public config API — lower effort, acceptable drift risk.
-- RFC implementation excluded from this milestone pending a business/compliance decision.
-- [Phase ?]: CURP_REGEX tail changed from [B-DF-HJ-NP-TV-Z]{3}\d{2}$ to [B-DF-HJ-NP-TV-Z]{3}[A-Z0-9]\d$ — position 17 unrestricted alnum, position 18 stays a permissive digit (no check-digit algorithm)
-- [Phase ?]: CURP-06: Client test infra pinned to vitest@^3.2.7 + happy-dom (D-02), per RESEARCH.md compatibility with Vite 5.4.8.
-- [Phase ?]: CURP-03: enmascararCurp fixed to expose 4 chars (was 5), mirroring server/src/utils/mask.js exactly.
-- [Phase ?]: Fixed the RTL cleanup gap centrally in client/src/test-utils/setup.ts (afterEach(cleanup)) rather than per-file, since globals:false disables @testing-library/react's automatic cleanup registration.
+- v2.0 scope = RFC-01 + RFC-02 + CURP-07: the two v1-deferred requirements (RFC-01, CURP-07) plus SEED-001 (→ RFC-02). Both deferred items are now unblocked (v1.0 CURP regex shipped).
+- RFC captured as an *optional* field with format validation only (12/13-char, uppercase); obligatoriness and RFC↔CURP cross-checks stay out of scope for this training milestone.
+- Roadmap split (2 phases, coarse granularity): Phase 3 = CURP-07 (backend-only cross-field refine, no config/API/UI surface); Phase 4 = RFC-01 + RFC-02 (config + schema + UI + ARCO, one coherent capture-and-mask slice). Phases are independent; Phase 4 sequences after Phase 3 because both edit `esquemaDatosPersonales`.
+- RFC field added as an optional, additive field to `datos_personales` to stay backward-compatible with the `Fase`/`Draft`/`Record` structures and API contracts (no existing field renamed/restructured).
+- CURP-07 birthdate cross-check covers positions 5–10 (`yymmdd`) only; the century differentiator (pos 17) vs birth-year check stays out of scope (RENAPO edge cases).
+- [v1.0]: CURP_REGEX tail changed to `[B-DF-HJ-NP-TV-Z]{3}[A-Z0-9]\d$` — position 17 unrestricted alnum, position 18 a permissive digit (no check-digit algorithm).
+- [v1.0]: Client test infra pinned to vitest + happy-dom, compatible with Vite 5.4.8.
+- [v1.0]: `enmascararCurp` exposes 4 chars, mirroring `server/src/utils/mask.js` — the parity RFC-02 must replicate for `rfc`.
 
 ### Pending Todos
 
@@ -79,7 +80,7 @@ None yet.
 
 ### Blockers/Concerns
 
-None yet.
+- Known drift risk carried from v1.0 (WR-01): the CURP regex now exists as 3 hand-maintained copies with no automated equality check. RFC-01 introduces a fourth pattern pair (config + Zod) with the same drift shape — worth a byte-identity or shared-fixture regression test when planning Phase 4.
 
 ### Quick Tasks Completed
 
@@ -93,15 +94,15 @@ Items acknowledged and carried forward from previous milestone close:
 
 | Category | Item | Status | Deferred At |
 |----------|------|--------|-------------|
-| v2 requirement | RFC-01: RFC field in pre-registration wizard | Deferred | Roadmap creation 2026-07-15 |
-| v2 requirement | CURP-07: Semantic cross-validation of CURP vs. fechaNacimiento/sexo (BACKLOG.md #5) | Deferred | Roadmap creation 2026-07-15 |
+| v2 requirement | RFC-01: RFC field in pre-registration wizard | Promoted → Phase 4 (v2.0) | Roadmap creation 2026-07-15 |
+| v2 requirement | CURP-07: Semantic cross-validation of CURP vs. fechaNacimiento/sexo (BACKLOG.md #5) | Promoted → Phase 3 (v2.0) | Roadmap creation 2026-07-15 |
 
 ## Session Continuity
 
-Last session: 2026-07-16T19:53:13.080Z
-Stopped at: Completed 02-02-PLAN.md
+Last session: 2026-07-16 — v2.0 roadmap created
+Stopped at: ROADMAP.md written (Phases 3-4), REQUIREMENTS.md traceability mapped
 Resume file: None
 
 ## Operator Next Steps
 
-- Start the next milestone with /gsd-new-milestone
+- Plan Phase 3 with `/gsd-plan-phase 3` (CURP Semantic Cross-Validation)

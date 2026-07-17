@@ -1,6 +1,8 @@
 ---
 id: SEED-001
-status: dormant
+status: germinated
+germinated: 2026-07-16
+germinated_into: "RFC-02 (milestone v2.0, Phase 4)"
 planted: 2026-07-16
 planted_during: "between milestones (v1.0 shipped, v2.0 not yet started)"
 trigger_when: "when RFC-01 lands — the RFC field is added to the pre-registration wizard (schema, phases.config.json, capture UI)"
