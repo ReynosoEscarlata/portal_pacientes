@@ -50,7 +50,7 @@ export function WizardProvider({ children }: { children: ReactNode }) {
         try {
           const draft = await api.obtenerBorrador(guardado);
           setDraftId(guardado);
-          setDatos(draft.respuestas ?? {});
+          setDatos(draft.datos ?? {});
           setFaseActual(draft.faseActual ?? 0);
           setMaxFase(draft.faseActual ?? 0);
           return;

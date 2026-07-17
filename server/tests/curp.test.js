@@ -25,7 +25,12 @@ test('acepta CURP válidas', () => {
 
 test('acepta CURP post-2000 (letra en posición 17)', () => {
   assert.ok(CURP_REGEX.test('MAPA000115HDFRRLA1'));
-  const r = esquemaDatosPersonales.safeParse({ ...base, curp: 'MAPA000115HDFRRLA1' });
+  const r = esquemaDatosPersonales.safeParse({
+    ...base,
+    curp: 'MAPA000115HDFRRLA1',
+    fechaNacimiento: '2000-01-15',
+    sexo: 'H'
+  });
   assert.equal(r.success, true);
 });
 
@@ -60,4 +65,42 @@ test('rechaza CURP con formato inválido', () => {
     const r = esquemaDatosPersonales.safeParse({ ...base, curp });
     assert.equal(r.success, false, `debería rechazar: ${curp}`);
   }
+});
+
+test('rechaza CURP cuya fecha codificada no coincide con fechaNacimiento', () => {
+  const r = esquemaDatosPersonales.safeParse({ ...base, fechaNacimiento: '1985-03-13' });
+  assert.equal(r.success, false);
+});
+
+test('rechaza CURP cuyo sexo codificado no coincide con sexo', () => {
+  const r = esquemaDatosPersonales.safeParse({ ...base, sexo: 'H' });
+  assert.equal(r.success, false);
+  // Guarda la atribución de campo: manejadorErrores deriva `campo` de `path`,
+  // así que este assert protege el campo: 'curp' contra un cambio futuro de path.
+  assert.equal(r.error.issues[0].path[0], 'curp');
+});
+
+test('sexo NE omite la verificación de sexo pero conserva la de fecha', () => {
+  // base.curp codifica sexo 'M'; sin el skip de NE, esta primera aserción
+  // rechazaría ('M' !== 'NE'), por lo que el success: true aquí es discriminante,
+  // no tautológico.
+  const r1 = esquemaDatosPersonales.safeParse({ ...base, sexo: 'NE' });
+  assert.equal(r1.success, true);
+
+  const r2 = esquemaDatosPersonales.safeParse({ ...base, sexo: 'NE', fechaNacimiento: '1985-03-13' });
+  assert.equal(r2.success, false);
+});
+
+test('acepta payload con CURP semánticamente consistente (sin regresión)', () => {
+  const r = esquemaDatosPersonales.safeParse(base);
+  assert.equal(r.success, true);
+});
+
+test('CURP con formato inválido produce un solo issue (guard de superRefine)', () => {
+  const r = esquemaDatosPersonales.safeParse({ ...base, curp: 'MAPA000115HDFRRL#1' });
+  assert.equal(r.success, false);
+  // Un solo issue confirma que el guard de retorno anticipado del superRefine
+  // se activó; sin el guard, esta CURP inválida además dispararía los checks
+  // de fecha y sexo, produciendo tres issues.
+  assert.equal(r.error.issues.length, 1);
 });

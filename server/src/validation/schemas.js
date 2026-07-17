@@ -52,7 +52,32 @@ export const esquemaDatosPersonales = z
       .max(120, 'El correo no debe exceder 120 caracteres')
       .email('El correo no es válido')
   })
-  .strict();
+  .strict()
+  .superRefine((data, ctx) => {
+    if (!CURP_REGEX.test(data.curp) || !/^\d{4}-\d{2}-\d{2}$/.test(data.fechaNacimiento)) {
+      return;
+    }
+
+    const yymmddCurp = data.curp.slice(4, 10);
+    const yymmddFecha =
+      data.fechaNacimiento.slice(2, 4) + data.fechaNacimiento.slice(5, 7) + data.fechaNacimiento.slice(8, 10);
+    if (yymmddCurp !== yymmddFecha) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'La fecha de nacimiento de la CURP no coincide con la fecha de nacimiento capturada',
+        path: ['curp']
+      });
+    }
+
+    const sexoCurp = data.curp.charAt(10);
+    if (data.sexo !== 'NE' && sexoCurp !== data.sexo) {
+      ctx.addIssue({
+        code: z.ZodIssueCode.custom,
+        message: 'El sexo de la CURP no coincide con el sexo capturado',
+        path: ['curp']
+      });
+    }
+  });
 
 export const esquemaDomicilio = z
   .object({

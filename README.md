@@ -104,6 +104,21 @@ Helmet, CORS restringido a `CORS_ORIGIN`, rate limiting en endpoints de escritur
 | [CODE_REVIEW.md](CODE_REVIEW.md) | Checklist de revisión + prompt listo para otra IA |
 | [SOLUCIONES_BUGS.md](SOLUCIONES_BUGS.md) | ⚠️ **SPOILERS**: bugs sembrados intencionalmente. El proyecto contiene 4 bugs sutiles para practicar debugging sistemático; no abras este archivo hasta haberlos buscado |
 
+## Validación semántica de CURP
+
+El backend valida (en `esquemaDatosPersonales`, [schemas.js](server/src/validation/schemas.js)) que la fecha de nacimiento y el sexo codificados dentro de la CURP coincidan con `fechaNacimiento` y `sexo` capturados por separado en el formulario; si contradicen, la fase se rechaza con un error 422 de validación (el sexo `NE` omite ese cruce, ya que ninguna CURP lo codifica).
+
+## Documentación
+
+| Documento | Contenido |
+|-----------|-----------|
+| [docs/GETTING-STARTED.md](docs/GETTING-STARTED.md) | Requisitos, instalación paso a paso y primer arranque |
+| [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) | Visión general del sistema, componentes y flujo de datos |
+| [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md) | Setup de desarrollo, comandos de build/lint y convenciones de rama/PR |
+| [docs/TESTING.md](docs/TESTING.md) | Cómo correr y escribir tests (backend `node:test` y cliente Vitest) |
+| [docs/API.md](docs/API.md) | Detalle de endpoints, formatos de request/response y códigos de error |
+| [docs/CONFIGURATION.md](docs/CONFIGURATION.md) | Variables de entorno y opciones de configuración del servidor |
+
 ## Estructura
 
 ```
