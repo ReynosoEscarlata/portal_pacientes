@@ -8,6 +8,17 @@ A public web portal where patients complete a multi-phase pre-registration form 
 
 A patient can complete pre-registration and get a valid folio without the data being wrong, mismatched between what the form allowed and what the backend accepted, or leaked on screen.
 
+## Current Milestone: v2.0 Validación RFC y CURP semántica
+
+**Goal:** The wizard captures and validates the patient's RFC with masking parity, and cross-validates the CURP against the captured birthdate/sex — closing both requirements deferred from v1.0.
+
+**Target features:**
+- RFC field in the pre-registration wizard with format validation (RFC-01, deferred from v1.0)
+- RFC masked on the confirmation screen and in ARCO responses, mirroring CURP masking (RFC-02 — germinated from SEED-001)
+- Semantic cross-validation of CURP positions 5–11 against captured `fechaNacimiento`/`sexo` (CURP-07, BACKLOG.md #5, deferred from v1.0)
+
+**Key context:** SEED-001 surfaced during milestone scan (trigger: "when RFC-01 lands") and was incorporated as RFC-02. RFC scope assumes the pending business/compliance decision is resolved as "capture RFC as optional field" for this training milestone — recorded in Key Decisions.
+
 ## Requirements
 
 ### Validated
@@ -26,13 +37,15 @@ A patient can complete pre-registration and get a valid folio without the data b
 
 ### Active
 
-None — all milestone requirements validated.
+- **RFC-01**: Patient can enter their RFC in the pre-registration wizard and it is validated for format (frontend pattern + backend Zod), as an optional field in `datos_personales`
+- **RFC-02**: RFC is masked on the confirmation screen and in ARCO access responses, exposing only the first 4 characters (parity with CURP masking) — germinated from SEED-001
+- **CURP-07**: Backend rejects a CURP whose encoded birthdate (positions 5–10) or sex letter (position 11) contradicts the separately captured `fechaNacimiento`/`sexo` fields
 
 ### Out of Scope
 
-- RFC field/validation — not currently implemented anywhere in the app (config, schema, or backlog); adding it requires a business/compliance decision on whether pre-registration needs RFC at all, and if so where in the wizard. Documented in `ROADMAP_VALIDACION_CURP_RFC.md` as a pending decision, not a bug.
-- Semantic cross-validation of CURP against captured birthdate/sex fields — already tracked as its own backlog item (`BACKLOG.md` #5); depends on the CURP regex fix landing first but is a separate piece of work.
 - Exposing the validation regex via a public config API (`GET /api/config`) as a single source of truth — user chose the lower-effort duplication approach (2.1a) instead; revisit only if pattern drift becomes a recurring problem.
+- RFC as a *required* field or RFC↔CURP cross-validation — v2.0 captures RFC as optional with format validation only; obligatoriness needs the full compliance decision.
+- Check-digit (mod-10/11) algorithmic validation for CURP position 18 or RFC — format-level validation only, consistent with v1.0 decision D-04.
 
 ## Context
 
@@ -54,6 +67,8 @@ None — all milestone requirements validated.
 | Bundle Fase 1 + Fase 2 from the existing roadmap into one milestone | Fase 2 items depend on the Fase 1 CURP regex fix and touch overlapping files; doing both avoids a second pass | ✓ Good — Phase 2 built cleanly on Phase 1's regex fix, no rework needed |
 | Duplicate the corrected CURP regex into `phases.config.json` (roadmap option 2.1a) rather than exposing it via a public config API (2.1b) | Lower effort; drift risk is small and acceptable for now | ⚠️ Revisit — works today, but code review (Phase 2) flagged 3 hand-maintained regex copies with no automated equality check as a recurring drift risk |
 | RFC implementation excluded from this milestone | Requires a business/compliance decision not yet made; not a bug to fix | ✓ Good — correctly scoped out, tracked as RFC-01 in v2 backlog |
+| v2.0 scope = RFC-01 + RFC-02 + CURP-07 (the two v1-deferred requirements plus SEED-001) | Both deferred items are unblocked (CURP-01 shipped); SEED-001's trigger matched the milestone scan, so RFC masking ships with the RFC field instead of as a fast-follow | Pending — milestone in planning |
+| RFC captured as *optional* field with format validation only | Training milestone: compliance decision assumed resolved as "optional capture"; obligatoriness and RFC↔CURP cross-checks stay out of scope | Pending |
 
 ## Evolution
 
@@ -73,4 +88,4 @@ This document evolves at phase transitions and milestone boundaries.
 4. Update Context with current state
 
 ---
-*Last updated: 2026-07-16 after v1.0 milestone completion*
+*Last updated: 2026-07-16 at v2.0 milestone start*
