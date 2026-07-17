@@ -25,7 +25,12 @@ test('acepta CURP válidas', () => {
 
 test('acepta CURP post-2000 (letra en posición 17)', () => {
   assert.ok(CURP_REGEX.test('MAPA000115HDFRRLA1'));
-  const r = esquemaDatosPersonales.safeParse({ ...base, curp: 'MAPA000115HDFRRLA1' });
+  const r = esquemaDatosPersonales.safeParse({
+    ...base,
+    curp: 'MAPA000115HDFRRLA1',
+    fechaNacimiento: '2000-01-15',
+    sexo: 'H'
+  });
   assert.equal(r.success, true);
 });
 
