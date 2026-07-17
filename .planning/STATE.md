@@ -2,15 +2,19 @@
 gsd_state_version: 1.0
 milestone: v2.0
 milestone_name: Validación RFC y CURP semántica
-status: planning
-last_updated: "2026-07-16T12:00:00.000Z"
-last_activity: 2026-07-16
+current_phase: 03
+current_phase_name: curp-semantic-cross-validation
+status: executing
+stopped_at: Completed 03-01-PLAN.md (CURP-07 semantic cross-validation)
+last_updated: "2026-07-17T00:00:00.000Z"
+last_activity: 2026-07-17
+last_activity_desc: Phase 03 Plan 01 executed (CURP-07 complete)
 progress:
   total_phases: 2
-  completed_phases: 0
-  total_plans: 0
-  completed_plans: 0
-  percent: 0
+  completed_phases: 1
+  total_plans: 1
+  completed_plans: 1
+  percent: 50
 ---
 
 # Project State
@@ -20,14 +24,14 @@ progress:
 See: .planning/PROJECT.md (updated 2026-07-16)
 
 **Core value:** A patient can complete pre-registration and get a valid folio without the data being wrong, mismatched between what the form allowed and what the backend accepted, or leaked on screen.
-**Current focus:** v2.0 roadmap created (Phases 3-4) — ready to plan Phase 3
+**Current focus:** Phase 03 — curp-semantic-cross-validation
 
 ## Current Position
 
-Phase: 3 — CURP Semantic Cross-Validation (not started)
-Plan: —
-Status: Roadmap complete, ready to plan Phase 3
-Last activity: 2026-07-16 — v2.0 roadmap created (Phases 3-4), all 3 requirements mapped
+Phase: 03 (curp-semantic-cross-validation) — COMPLETE
+Plan: 1 of 1
+Status: Phase 03 complete; Phase 04 (RFC Capture & Masking) not started
+Last activity: 2026-07-17 — Phase 03 Plan 01 executed (CURP-07 done)
 
 ## Performance Metrics
 
@@ -65,6 +69,7 @@ Last activity: 2026-07-16 — v2.0 roadmap created (Phases 3-4), all 3 requireme
 Decisions are logged in PROJECT.md Key Decisions table.
 Recent decisions affecting current work:
 
+- Phase 3 (CURP-07) complete: `.superRefine()` cross-field check added to `esquemaDatosPersonales` rejecting CURP birthdate/sex mismatches against `fechaNacimiento`/`sexo`, both issues on `path: ['curp']`; guard prevents duplicate issues on format-invalid CURP; 10 node:test cases lock all cases.
 - v2.0 scope = RFC-01 + RFC-02 + CURP-07: the two v1-deferred requirements (RFC-01, CURP-07) plus SEED-001 (→ RFC-02). Both deferred items are now unblocked (v1.0 CURP regex shipped).
 - RFC captured as an *optional* field with format validation only (12/13-char, uppercase); obligatoriness and RFC↔CURP cross-checks stay out of scope for this training milestone.
 - Roadmap split (2 phases, coarse granularity): Phase 3 = CURP-07 (backend-only cross-field refine, no config/API/UI surface); Phase 4 = RFC-01 + RFC-02 (config + schema + UI + ARCO, one coherent capture-and-mask slice). Phases are independent; Phase 4 sequences after Phase 3 because both edit `esquemaDatosPersonales`.
@@ -99,10 +104,10 @@ Items acknowledged and carried forward from previous milestone close:
 
 ## Session Continuity
 
-Last session: 2026-07-16 — v2.0 roadmap created
-Stopped at: ROADMAP.md written (Phases 3-4), REQUIREMENTS.md traceability mapped
+Last session: 2026-07-17 — Phase 03 Plan 01 executed
+Stopped at: Completed 03-01-PLAN.md (CURP-07 semantic cross-validation)
 Resume file: None
 
 ## Operator Next Steps
 
-- Plan Phase 3 with `/gsd-plan-phase 3` (CURP Semantic Cross-Validation)
+- Plan Phase 4 with `/gsd-plan-phase 4` (RFC Capture & Masking)

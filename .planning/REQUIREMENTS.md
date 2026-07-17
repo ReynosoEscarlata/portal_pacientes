@@ -16,7 +16,7 @@ REQ-ID numbering continues from v1.0 (`.planning/milestones/v1.0-REQUIREMENTS.md
 
 ### CURP Semantic Validation
 
-- [ ] **CURP-07**: Backend rejects a `datos_personales` payload whose CURP-encoded birthdate (positions 5–10, `yymmdd`) or sex letter (position 11, `H`/`M`) contradicts the separately captured `fechaNacimiento`/`sexo` fields, with a field-level validation error; `sexo: 'NE'` skips the sex cross-check (no CURP encodes it)
+- [x] **CURP-07**: Backend rejects a `datos_personales` payload whose CURP-encoded birthdate (positions 5–10, `yymmdd`) or sex letter (position 11, `H`/`M`) contradicts the separately captured `fechaNacimiento`/`sexo` fields, with a field-level validation error; `sexo: 'NE'` skips the sex cross-check (no CURP encodes it)
 
 ## Future Requirements
 
@@ -38,7 +38,7 @@ Deferred beyond v2.0. Tracked but not in current roadmap.
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| CURP-07 | Phase 3 | Pending |
+| CURP-07 | Phase 3 | Complete |
 | RFC-01 | Phase 4 | Pending |
 | RFC-02 | Phase 4 | Pending |
 

@@ -24,7 +24,7 @@ Full detail archived at `.planning/milestones/v1.0-ROADMAP.md`.
 
 ### v2.0 Validación RFC y CURP semántica (Phases 3-4)
 
-- [ ] **Phase 3: CURP Semantic Cross-Validation** - Backend rejects a CURP whose encoded birthdate/sex contradicts the separately captured `fechaNacimiento`/`sexo`
+- [x] **Phase 3: CURP Semantic Cross-Validation** - Backend rejects a CURP whose encoded birthdate/sex contradicts the separately captured `fechaNacimiento`/`sexo` — completed 2026-07-17
 - [ ] **Phase 4: RFC Capture & Masking** - Optional RFC field, format-validated on both layers and masked to the first 4 characters on the confirmation screen and in ARCO access responses
 
 ## Phase Details
@@ -45,7 +45,7 @@ Full detail archived at `.planning/milestones/v1.0-ROADMAP.md`.
 **Plans**: 1 plan
 
 Plans:
-- [ ] 03-01-PLAN.md — Add CURP↔fechaNacimiento/sexo semantic cross-check (.superRefine) to esquemaDatosPersonales, fix the pre-existing post-2000 fixture, and lock all cases with node:test
+- [x] 03-01-PLAN.md — Add CURP↔fechaNacimiento/sexo semantic cross-check (.superRefine) to esquemaDatosPersonales, fix the pre-existing post-2000 fixture, and lock all cases with node:test
 
 ### Phase 4: RFC Capture & Masking
 
@@ -72,5 +72,5 @@ Phases execute in numeric order: 3 → 4
 |-------|-----------|-----------------|--------|-----------|
 | 1. Backend CURP Regex Fix | v1.0 | 1/1 | Complete | 2026-07-15 |
 | 2. Frontend CURP Consistency & Test Infrastructure | v1.0 | 2/2 | Complete | 2026-07-16 |
-| 3. CURP Semantic Cross-Validation | v2.0 | 0/1 | Planned | - |
+| 3. CURP Semantic Cross-Validation | v2.0 | 1/1 | Complete | 2026-07-17 |
 | 4. RFC Capture & Masking | v2.0 | 0/? | Not started | - |
