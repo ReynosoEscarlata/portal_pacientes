@@ -113,8 +113,12 @@ p { margin: 0 0 10px; }
   cursor: pointer;
 }
 
-.topbar__enlace:hover {
-  background: rgba(255, 255, 255, 0.15);
+/* Solo en dispositivos con hover real: en iOS Safari el primer tap aplica el
+   estado :hover sin disparar el click (sticky hover) y el botón parece inerte. */
+@media (hover: hover) {
+  .topbar__enlace:hover {
+    background: rgba(255, 255, 255, 0.15);
+  }
 }
 
 .topbar__enlace--activo {
@@ -171,8 +175,10 @@ p { margin: 0 0 10px; }
   color: var(--blanco);
 }
 
-.btn--primario:hover:not(:disabled) {
-  background: var(--azul-oscuro);
+@media (hover: hover) {
+  .btn--primario:hover:not(:disabled) {
+    background: var(--azul-oscuro);
+  }
 }
 
 .btn--exito {
@@ -180,8 +186,10 @@ p { margin: 0 0 10px; }
   color: var(--blanco);
 }
 
-.btn--exito:hover:not(:disabled) {
-  background: var(--verde-oscuro);
+@media (hover: hover) {
+  .btn--exito:hover:not(:disabled) {
+    background: var(--verde-oscuro);
+  }
 }
 
 .btn--secundario {
@@ -189,8 +197,10 @@ p { margin: 0 0 10px; }
   color: var(--texto);
 }
 
-.btn--secundario:hover:not(:disabled) {
-  background: var(--borde);
+@media (hover: hover) {
+  .btn--secundario:hover:not(:disabled) {
+    background: var(--borde);
+  }
 }
 
 .btn--peligro {
@@ -198,8 +208,10 @@ p { margin: 0 0 10px; }
   color: var(--blanco);
 }
 
-.btn--peligro:hover:not(:disabled) {
-  filter: brightness(0.92);
+@media (hover: hover) {
+  .btn--peligro:hover:not(:disabled) {
+    filter: brightness(0.92);
+  }
 }
 
 .btn--liga {
@@ -209,8 +221,10 @@ p { margin: 0 0 10px; }
   font-size: 14px;
 }
 
-.btn--liga:hover {
-  background: var(--azul-suave);
+@media (hover: hover) {
+  .btn--liga:hover {
+    background: var(--azul-suave);
+  }
 }
 
 .btn--grande {
