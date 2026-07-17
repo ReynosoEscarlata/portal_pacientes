@@ -42,7 +42,10 @@ Full detail archived at `.planning/milestones/v1.0-ROADMAP.md`.
   4. A payload whose CURP birthdate and sex agree with the entered `fechaNacimiento`/`sexo` continues to pass validation (no regression for existing valid submissions).
   5. Backend `node:test` coverage locks each case: mismatched birthdate rejected, mismatched sex rejected, `NE` sex-skip accepted, and a fully consistent payload accepted.
 
-**Plans**: TBD
+**Plans**: 1 plan
+
+Plans:
+- [ ] 03-01-PLAN.md — Add CURP↔fechaNacimiento/sexo semantic cross-check (.superRefine) to esquemaDatosPersonales, fix the pre-existing post-2000 fixture, and lock all cases with node:test
 
 ### Phase 4: RFC Capture & Masking
 
@@ -69,5 +72,5 @@ Phases execute in numeric order: 3 → 4
 |-------|-----------|-----------------|--------|-----------|
 | 1. Backend CURP Regex Fix | v1.0 | 1/1 | Complete | 2026-07-15 |
 | 2. Frontend CURP Consistency & Test Infrastructure | v1.0 | 2/2 | Complete | 2026-07-16 |
-| 3. CURP Semantic Cross-Validation | v2.0 | 0/? | Not started | - |
+| 3. CURP Semantic Cross-Validation | v2.0 | 0/1 | Planned | - |
 | 4. RFC Capture & Masking | v2.0 | 0/? | Not started | - |
